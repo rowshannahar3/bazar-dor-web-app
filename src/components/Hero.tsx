@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { bnDate } from "@/lib/bn";
 
 export default function Hero() {
@@ -21,8 +22,16 @@ export default function Hero() {
           সব পণ্য দেখুন
         </a>
       </div>
-      <div className="grid place-items-center text-[7rem] sm:text-[9rem]" aria-hidden>
-        🧺
+
+      <div className="flex justify-center md:justify-end">
+        <Image
+          src="/images/bazar-hero.png"
+          alt="সবজি ও ফলের ঝুড়ি"
+          width={420}
+          height={320}
+          className="h-auto w-full max-w-xs sm:max-w-sm"
+          priority
+        />
       </div>
     </section>
   );
