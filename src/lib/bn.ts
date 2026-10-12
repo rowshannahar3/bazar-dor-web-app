@@ -29,3 +29,10 @@ export const bnDate = () =>
     year: "numeric",
     timeZone: "Asia/Dhaka",
   });
+  const mf = new Intl.NumberFormat("bn-BD", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+// whole numbers as ৬২, fractional as ৬৩.৫০ (matches the Figma table)
+export const toBnMoney = (n: number) => (Number.isInteger(n) ? toBn(n) : mf.format(n));

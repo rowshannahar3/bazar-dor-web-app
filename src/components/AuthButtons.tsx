@@ -1,9 +1,14 @@
+"use client";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import UserMenu from "./UserMenu";
 
 export default function AuthButtons() {
-  const user = null; // TODO: replace with BetterAuth session in the auth step
+  const { data: session, isPending } = authClient.useSession();
 
-  if (user) return null; // profile dropdown comes later
+  if (isPending) return <div className="skeleton h-9 w-32 rounded-lg" />;
+
+  if (session?.user) return <UserMenu user={session.user} />;
 
   return (
     <div className="flex items-center gap-2">

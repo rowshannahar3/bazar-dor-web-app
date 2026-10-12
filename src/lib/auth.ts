@@ -1,7 +1,14 @@
+import dns from "node:dns";
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { nextCookies } from "better-auth/next-js";
 import { MongoClient } from "mongodb";
+
+// Local dev only: make Node's own resolver use Google DNS for SRV lookups
+if (process.env.NODE_ENV !== "production") {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+  dns.setDefaultResultOrder("ipv4first");
+}
 
 // Reuse one connection during dev hot reloads
 const globalForMongo = globalThis as unknown as { mongo?: MongoClient };
