@@ -22,6 +22,14 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: false, // after sign up, send the user to the sign-in page
   },
+  // ⬇️ NEW: lines to add
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google", "github"],
+    },
+  },
+  // ⬆️ END NEW
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
